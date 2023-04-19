@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  devcontainer:
+    build: 
+      context: .
+      ssh:
+        - default
+    volumes:
+      - ..:/workspaces/www:cached
+    privileged: true
+    # network_mode: service:db
+    command: sleep infinity
+
+volumes:
+    data:
