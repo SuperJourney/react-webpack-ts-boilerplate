@@ -55,6 +55,7 @@ const config: Configuration = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(rootPath, 'src/template/index.html'),
+            title: 'Custom Title'
         })
     ],
     resolve: {
