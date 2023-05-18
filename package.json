@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "hello": "npx webpack -c ./conf/base.config.ts",
-    "dev": "webpack-dev-server -c ./conf/dev.config.ts"
+    "dev": "webpack-dev-server -c ./conf/dev.config.ts --no-cache"
   },
   "devDependencies": {
     "css-loader": "^6.7.3",

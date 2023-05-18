@@ -1,0 +1,22 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"problemMatcher": [],
+			"label": "npm: dev",
+			"detail": "webpack-dev-server -c ./conf/dev.config.ts --no-cache",
+			"group": "build"
+		},
+		{
+			"label": "npm install",
+            "type": "shell",
+            "command": "npm install --registry=http://registry.npmmirror.com",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+		}
+	]
+}

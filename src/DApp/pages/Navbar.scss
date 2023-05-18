@@ -1,0 +1,110 @@
+@import "./common.scss";
+
+.container{
+  height: 100vh;
+}
+
+.navbar {
+  padding: 0 0.5rem ;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+}
+
+
+.navbar-item {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: flex-start;
+  list-style-type: none;
+  list-style: none;
+
+  &>li {
+    padding: 0 30px ;
+  }
+
+  &>li {
+    &>ul{
+      @include compact();
+      display: none;
+      padding: 0;
+      margin: 0;
+    }
+    &:hover>ul {
+      background-color: rgb(91, 103, 103);
+      display: block;
+      list-style: none;
+      position:absolute;
+      overflow: visible;
+      z-index: 1000;
+      float:none;
+      line-height: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      &>li{
+        min-width: 10rem;
+        @include compact();
+        margin: 0 1rem !important;
+        border-bottom: 1px solid #ccc;
+        padding: 0.1rem 0.5rem !important; 
+        &:hover{
+          background-color: rgb(125, 141, 125); 
+        }
+      }
+    }
+  }
+}
+
+
+.navbar-brand {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+// 当最大宽度满足768px时
+@media screen and (max-width:768px) {
+  .navbar {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+
+
+  // logo需要展示到正中间
+  .navbar-brand {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+
+    .label {
+      margin: 0 auto;
+    }
+
+    .nav-toggle {
+      display: block !important;
+    }
+  }
+
+  
+
+  .navbar-item {
+    &.toggle {
+      display: none;
+    }
+
+    margin: 0.1rem;
+    padding-left: 0;
+    flex-direction: column;
+    align-items: stretch;
+
+    li {
+      border-bottom: 1px solid #ccc;
+      @include compact()
+    }
+  }
+}
+
+
