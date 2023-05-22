@@ -1,0 +1,23 @@
+.chat{
+    display: flex;
+    height: 100vh;
+    .chat-history{
+        width: 300px;
+    }
+    .chatbox{
+        flex-grow: 2;
+    }
+}
+
+
+// 当最大宽度满足768px时
+@media screen and (max-width:768px) {
+    .chat{
+        flex-direction: column;
+        justify-content: center;
+        .chat-history{
+            height: 40px;
+            width: 100%;
+        }
+    }
+}

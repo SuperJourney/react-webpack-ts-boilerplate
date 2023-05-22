@@ -18,7 +18,7 @@ export default class NavBar extends Component<any, IState>  {
 
 
   render(): React.ReactNode {
-    const {show} = this.state
+    const { show } = this.state
     return <div className='container'>
       <nav className='navbar'>
         <div className='navbar-brand'>
@@ -27,8 +27,10 @@ export default class NavBar extends Component<any, IState>  {
             <button onClick={this.handleToggleShow}>==</button>
           </div>
         </div>
-          <ul className={`navbar-item ${show?'show':''}`}>
-            <li><Link to={'chat'} >CHATGPT</Link></li>
+        <ul className={`navbar-item ${show ? 'show' : ''}`}>
+          <li><Link to={'chat'} >CHATGPT</Link></li>
+          <li><Link to={'co1'} >COUNT1</Link></li>
+          <li><Link to={'co2'} >COUNT2</Link></li>
           <li>
             12
             <ul>
@@ -39,7 +41,6 @@ export default class NavBar extends Component<any, IState>  {
               <li>123</li>
             </ul>
           </li>
-          <li>12</li>
           <li>12</li>
           <li>12</li>
         </ul>
