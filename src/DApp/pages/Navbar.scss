@@ -24,10 +24,19 @@
   list-style: none;
 
   &>li {
+    &:hover{
+      background-color: #ccc;
+    }
     padding: 0 30px ;
   }
 
   &>li {
+    &>a{
+      color: white;
+      &:hover{
+        color: brown;
+      }
+    }
     &>ul{
       @include compact();
       display: none;
@@ -60,7 +69,7 @@
 
 
 .navbar-brand {
-  .nav-toggle {
+  .nav-toggle-btn {
     display: none;
   }
 }
@@ -83,7 +92,7 @@
       margin: 0 auto;
     }
 
-    .nav-toggle {
+    .nav-toggle-btn {
       display: block !important;
     }
   }
@@ -91,7 +100,7 @@
   
 
   .navbar-item {
-    &.toggle {
+    &.show {
       display: none;
     }
 

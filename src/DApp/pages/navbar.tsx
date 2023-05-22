@@ -1,37 +1,49 @@
-import React, { Component } from 'react'
-import { useState } from 'react';
-
+import React, { Component, useState } from 'react'
+import { BrowserRouter as Router, Routes, Link } from 'react-router-dom';
 import "./NavBar.scss"
 
+interface IState {
+  show: boolean
+}
+export default class NavBar extends Component<any, IState>  {
+  state = {
+    show: true
+  }
+  handleToggleShow = () => {
+    const { show } = this.state;
+    this.setState({
+      show: !show,
+    });
+  };
 
-export default class NavBar extends Component {
-  // const [toggleStatus,setToggleStatus] = useState(0);
+
   render(): React.ReactNode {
+    const {show} = this.state
     return <div className='container'>
       <nav className='navbar'>
-          <div className='navbar-brand'>
-            <div className='label'>LOGO</div>
-            <div className='nav-toggle'>
-              <button>==</button>
-            </div>
+        <div className='navbar-brand'>
+          <div className='label'>LOGO</div>
+          <div className='nav-toggle-btn'>
+            <button onClick={this.handleToggleShow}>==</button>
           </div>
-          <ul className='navbar-item toggle'>
-            <li>12</li>
-            <li>
-              12
-              <ul>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-              </ul>
-            </li>
-            <li>12</li>
-            <li>12</li>
-            <li>12</li>
-          </ul>
-        </nav>
+        </div>
+          <ul className={`navbar-item ${show?'show':''}`}>
+            <li><Link to={'chat'} >CHATGPT</Link></li>
+          <li>
+            12
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+          </li>
+          <li>12</li>
+          <li>12</li>
+          <li>12</li>
+        </ul>
+      </nav>
     </div>
   }
 }
