@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
 import { BrowserRouter as Router, Routes, Link } from 'react-router-dom';
-import "./NavBar.scss"
+import "./Navbar.scss"
 
 interface IState {
   show: boolean

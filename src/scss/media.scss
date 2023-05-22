@@ -1,0 +1,50 @@
+// breakpoints
+$width-xs: 0;
+$width-sm: 544px;
+$width-md: 768px;
+$width-lg: 1012px;
+$width-xl: 1280px;
+
+$breakpoints: (
+  // Small screen / phone
+    sm: $width-sm,
+  // Medium screen / tablet
+    md: $width-md,
+  // Large screen / desktop (980 + (12 * 2)) <= container + gutters
+    lg: $width-lg,
+  // Extra large screen / wide desktop
+    xl: $width-xl
+) !default;
+
+// usage
+// .styles {
+//   font-size: 28px;
+//   @include breakpoint(md) {
+//     font-size: 32px;
+//   }
+// }
+
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == '' {
+    @content;
+  }
+
+  @else {
+    // Retrieves the value from the key
+    $value: map-get($breakpoints, $breakpoint);
+
+    // If the key exists in the map
+    @if $value != null {
+      // Prints a media query based on the value
+      @media (min-width: $value) {
+        @content;
+      }
+    }
+
+    // If the key doesn't exist in the map
+    @else {
+      @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. '
+        + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+  }
+}
