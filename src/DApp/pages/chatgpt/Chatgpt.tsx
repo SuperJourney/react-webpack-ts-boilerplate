@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './chatgpt.scss'
+import {marked} from  'marked'
+
 
 interface IState {
   Display: boolean
@@ -15,6 +17,7 @@ export class Chatgpt extends Component<any, IState> {
     }))
   }
   render() {
+    const html = marked("# hello,world,sf");
     return (
       <div className='root'>
         <div className='top'> <button onClick={this.toggle}>==</button> </div>
@@ -74,11 +77,10 @@ export class Chatgpt extends Component<any, IState> {
                   <div className='left-message-name'>
                     君子
                   </div>
-                  <div className='left-message-context'>
-                    我说一就是一
+                  <div className='left-message-context' dangerouslySetInnerHTML={{ __html: html }}>
                   </div>
                 </div>
-                <div className='left-message-tail'></div>
+                <div className='left-message-tail' ></div>
               </div>
 
               <div className='right-message content-item'>
