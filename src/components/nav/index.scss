@@ -1,0 +1,21 @@
+.nav{
+    display: flex;
+    background-color: #fff;
+    padding: 10px 0;
+    width: 100vw;
+    flex-direction:row;
+    justify-content: space-around;
+    .item{
+        .title{
+            font-size: 17px;
+            font-weight:400;
+        }    
+        .label{
+            font-size: 10px;
+            font-weight: lighter;
+        }
+    }
+    // todo 固定到底部；
+    position: fixed;
+    bottom: 0;
+}

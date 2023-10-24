@@ -9,7 +9,7 @@ interface ItemProps {
 
     children: React.ReactNode
 
-    onToggle: () => void
+    onToggle: (isChecked:boolean) => void
 }
 
 class Item extends React.Component<ItemProps> {
