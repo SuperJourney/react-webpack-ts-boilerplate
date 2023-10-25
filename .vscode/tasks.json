@@ -7,16 +7,19 @@
 			"problemMatcher": [],
 			"label": "npm: dev",
 			"detail": "webpack-dev-server -c ./conf/dev.config.ts --no-cache",
-			"group": "build"
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		},
 		{
 			"label": "npm install",
-            "type": "shell",
-            "command": "npm install --registry=http://registry.npmmirror.com",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+			"type": "shell",
+			"command": "npm install --registry=http://registry.npmmirror.com",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

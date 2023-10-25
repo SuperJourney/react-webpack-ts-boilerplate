@@ -1,4 +1,4 @@
-.nav{
+.tab{
     display: flex;
     background-color: #fff;
     padding: 10px 0;
@@ -11,10 +11,23 @@
             font-weight:400;
         }    
         .label{
+            background-color: #e3e4ef;
+            border-radius: 10px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 20px;
             font-size: 10px;
             font-weight: lighter;
         }
+        &.active{
+            color: #34a7e6;
+            .label{
+                color: white;
+                background-color: #34a7e6;
+            }
+        }
     }
+
     // todo 固定到底部；
     position: fixed;
     bottom: 0;

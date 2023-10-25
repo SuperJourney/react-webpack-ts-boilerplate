@@ -7,8 +7,6 @@ interface ItemProps {
     title: string
     remark: string
 
-    children: React.ReactNode
-
     onToggle: (isChecked:boolean) => void
 }
 

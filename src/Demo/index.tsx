@@ -1,15 +1,9 @@
 import React from "react"
-
-import List from "@/components/list"
-import Nav from "@/components/nav"
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import My from "@/Demo/pages/my/my"
+import Tab from "@/components/tab"
 import "./index.scss"
-const items = Array.from(Array(20), (_, i) => ({
-    title: `Title ${i + 1}`,
-    remark: `Remark ${i + 1}`,
-    onToggle: (isChecked: boolean) => {
-        console.log(isChecked)
-    }
-}))
+
 
 class Demo extends React.Component {
 
@@ -17,25 +11,17 @@ class Demo extends React.Component {
         return (
             <div>
                 <div>
-                    <List>
-                        {items.map((item, index) => (
-                            <List.Item
-                                key={index}
-                                title={item.title}
-                                remark={item.remark}
-                                onToggle={item.onToggle}
-                            >
-                                <div></div>
-                            </List.Item>
-                        ))}
-                    </List>
+                    <Router>
+                            <Route path="/">
+                                <My></My>
+                            </Route>
+                    </Router>
                 </div>
                 <div>
-                    <Nav>
-                        <Nav.Item></Nav.Item>
-                        <Nav.Item></Nav.Item>
-                        <Nav.Item></Nav.Item>
-                    </Nav>
+                    <Tab>
+                        <Tab.Item title="Title 1" remark="Remark 1" active={true} to='/chat'></Tab.Item>
+                        <Tab.Item title="Title 3" remark="Remark 3"></Tab.Item>
+                    </Tab>
                 </div>
 
             </div>
