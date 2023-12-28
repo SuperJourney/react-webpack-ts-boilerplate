@@ -2,11 +2,11 @@ import React from 'react'
 
 interface SquareProps {
     value: string
-    onClick: () => void
+    onSquareClick: () => void
 }
 export default function Square(props: SquareProps) {
     return (
-        <button className="square" onClick={props.onClick}>
+        <button className="square" onClick={props.onSquareClick}>
             {props.value}
         </button>
     )
