@@ -4,6 +4,11 @@ import Square from './square'
 import "./index.scss"
 import "./square.scss"
 
+import store from "./store/store"
+import { addHistory, resetHistory } from './store/slice/hisotrySlice'
+
+
+
 interface TicProps {
 
 }
@@ -12,7 +17,6 @@ interface TicState {
     ind: number[]
     a: string[]
     message: string
-    history: number[]
 }
 class Tic extends Component<TicProps, TicState> {
     constructor(props: TicProps) {
@@ -22,7 +26,7 @@ class Tic extends Component<TicProps, TicState> {
             ind: Array.from({ length: 9 }, (_, index) => index),
             a: Array(9).fill(""),
             message: "",
-            history:[], 
+            // history:[], 
         }
     }
     render() {
@@ -53,7 +57,7 @@ class Tic extends Component<TicProps, TicState> {
     }
 
     move = () => {
-        let historys = this.state.history
+        let historys = store.getState().historyReducer.history || [];
         return historys.map((item, index) => {
             return (
                 <li>
@@ -64,12 +68,15 @@ class Tic extends Component<TicProps, TicState> {
     }
 
     moveto = (i: number)=>{
-        let del_his = this.state.history.slice(i,9)
+        // let del_his = this.state.history.slice(i,9)
+        let del_his = store.getState().historyReducer.history.slice(i,9)
         let a = this.state.a
         del_his.forEach((item, index)=>{
             a[item] = ""
         })
-        this.setState({a:a, history: this.state.history.slice(0,i),trigger: i%2===1})
+        this.setState({a:a,trigger: i%2===1})
+        store.dispatch(resetHistory(store.getState().historyReducer.history.slice(0,i)))
+
     }
 
     click = (pos: number) => {
@@ -80,10 +87,12 @@ class Tic extends Component<TicProps, TicState> {
         } else {
             cur_statues[pos] = "O"
         }
-        this.setState({ a: cur_statues, trigger: !this.state.trigger, history: [...this.state.history, pos] })
+        this.setState({ a: cur_statues, trigger: !this.state.trigger })
+        store.dispatch(addHistory(pos))
         const winner = calculateWinner(cur_statues)
         if (winner !== null) {
-            this.setState({ a: Array(9).fill(""),history: [], trigger: false, message: "Winner:" + winner }) //"Winner"
+            this.setState({ a: Array(9).fill(""), trigger: false, message: "Winner:" + winner }) //"Winner"
+            store.dispatch(resetHistory([]))
             return
         }
     }

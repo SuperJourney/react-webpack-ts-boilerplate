@@ -5,6 +5,7 @@ import Tic from "./Tic"
 const container = document.getElementById("app")
 const root = createRoot(container!)
 
+
 root.render(
    <div>
     <StrictMode>
