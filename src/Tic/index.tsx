@@ -6,7 +6,7 @@ import "./square.scss"
 
 import store from "./store/store"
 import { addHistory, resetHistory } from './store/slice/hisotrySlice'
-
+import { History } from './components/history'
 
 
 interface TicProps {
@@ -40,7 +40,7 @@ class Tic extends Component<TicProps, TicState> {
                                 return (
                                     <div className='row' key={index}>
                                         {this.state.a.slice(index, index + 3).map((item, subIndex) => (
-                                            <Square value={this.state.a[index + subIndex]} onSquareClick={() => this.click(index + subIndex)} key={index + subIndex} />
+                                            <Square value={this.state.a[index + subIndex]} onSquareClick={() => this.click(index + subIndex)} key={"square-" + index + subIndex} />
                                         ))}
                                     </div>
                                 );
@@ -49,9 +49,14 @@ class Tic extends Component<TicProps, TicState> {
                         })
                     }
                 </div>
-                <ol>
+
+                {/* <ol>
                     {this.move()}
-                </ol>
+                </ol> */}
+                
+                <div>
+                    <History reset={this.reset}></History>
+                </div>
             </div>
         )
     }
@@ -61,22 +66,24 @@ class Tic extends Component<TicProps, TicState> {
         return historys.map((item, index) => {
             return (
                 <li>
-                go to move <button onClick={() => this.moveto(index)}> {index+1} </button> {item}
+                    go to move <button onClick={() => this.moveto(index)}> {index + 1} </button> {item}
                 </li>
             )
         })
     }
 
-    moveto = (i: number)=>{
-        // let del_his = this.state.history.slice(i,9)
-        let del_his = store.getState().historyReducer.history.slice(i,9)
+    moveto = (i: number) => {
+        this.reset(i)
+        store.dispatch(resetHistory(store.getState().historyReducer.history.slice(0, i)))
+    }
+
+    reset = (i: number) => {
         let a = this.state.a
-        del_his.forEach((item, index)=>{
+        let del_his = store.getState().historyReducer.history.slice(i, 9)
+        del_his.forEach((item, index) => {
             a[item] = ""
         })
-        this.setState({a:a,trigger: i%2===1})
-        store.dispatch(resetHistory(store.getState().historyReducer.history.slice(0,i)))
-
+        this.setState({ a: a, trigger: i % 2 === 1 })
     }
 
     click = (pos: number) => {
