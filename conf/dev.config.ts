@@ -7,6 +7,7 @@ const devServerConfig: DevServerConfiguration = {
   port: 8080,
   hot: true,
   open: true,
+  historyApiFallback: true,
 }
 
 const devConfig: Configuration = merge(BaseConfig, {

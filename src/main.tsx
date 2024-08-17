@@ -1,7 +1,6 @@
 import React, { StrictMode } from "react";
 import { createRoot} from 'react-dom/client'
-import Tic from "./Tic"
-
+import Bootstrap from "./bootstrap"
 const container = document.getElementById("app")
 const root = createRoot(container!)
 
@@ -9,7 +8,7 @@ const root = createRoot(container!)
 root.render(
    <div>
     <StrictMode>
-        <Tic />
+        <Bootstrap />
     </StrictMode>
    </div> 
 )

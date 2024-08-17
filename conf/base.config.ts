@@ -10,7 +10,7 @@ const config: Configuration = {
     entry: {
         app: path.resolve(rootPath, 'src/main.tsx'),
     },
-    
+
     module: {
         rules: [
             {
@@ -32,6 +32,16 @@ const config: Configuration = {
                     "style-loader",
                     // Translates CSS into CommonJS
                     "css-loader",
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: () => [
+                                    require('autoprefixer'),                  
+                                ]
+                            }
+                        }
+                    },
                     // Compiles Sass to CSS
                     "sass-loader",
                 ],
@@ -59,15 +69,11 @@ const config: Configuration = {
         })
     ],
     resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
-            alias: {
-                '@': path.resolve(rootPath, 'src'),
-                '@/components': path.resolve(rootPath, 'src/components'),
-            }
-
-            // "@/components": [
-            //     "./src/components/*"
-            //   ]
+        extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            '@': path.resolve(rootPath, 'src'),
+            '@/components': path.resolve(rootPath, 'src/components'),
+        }
     }
 }
 
