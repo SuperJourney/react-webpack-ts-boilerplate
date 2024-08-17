@@ -1,5 +1,33 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+
+
+interface Props {
+    className?: string
+}
+const UnloginBar: React.FC<Props> = (props) => {
+    return (
+        <Nav className={props.className}>
+            <Nav.Link href="/login" >未登录</Nav.Link>
+            <Nav.Link href="/login" >未登录</Nav.Link>
+        </Nav>
+    )
+}
+
+const MainLink: React.FC = () => {
+    return (
+        <>
+            <Nav.Link className="my-1" href="/">首页</Nav.Link>
+            <Nav.Link className = "my-1" href="/about">关于1</Nav.Link>
+            <Nav.Link className = "my-1" href="/about">关于1</Nav.Link>
+            <Nav.Link className = "my-1" href="/about">关于1</Nav.Link>
+            <Nav.Link className = "my-1" href="/about">关于1</Nav.Link>
+        </>
+    )
+}
+
+
 
 
 const NavbarComp: React.FC = () => {
@@ -11,7 +39,6 @@ const NavbarComp: React.FC = () => {
         );
 
         useEffect(() => {
-            console.log(useEffect);
             const mediaQueryList = window.matchMedia('(min-width: 768px)');
             const handleChange = () => {
                 setIsLargeScreen(mediaQueryList.matches);
@@ -29,46 +56,33 @@ const NavbarComp: React.FC = () => {
         <div>
             {useIsLargeScreen() ? (
                 <>
-                    <Navbar className="justify-content-between" expand="lg" bg="light">
-                        <>
-                            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar className="justify-content-between" expand="md" bg="light">
+                        <Nav>
                             <Navbar.Brand href="/">Bootstrap</Navbar.Brand>
-                        </>
-                        <Nav className="justify-content-end">
-                            <Nav.Link href="/login" >未登录</Nav.Link>
-                            <Nav.Link href="/login" >未登录</Nav.Link>
+                            <MainLink />
                         </Nav>
+                        <UnloginBar />
                     </Navbar>
                 </>
             ) : (
-                <Navbar expand="lg" bg="light" >
+                <Navbar expand="md" bg="light" >
                     <div>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Brand href="/">Bootstrap</Navbar.Brand>
                     </div>
-                    <Nav className="justify-content-end">
-                        <div className="d-flex flex-row">
-                            <Nav.Link href="/login" >未登录</Nav.Link>
-                            <Nav.Link href="/login" >未登录</Nav.Link>
-                        </div>
-                    </Nav>
+                    <UnloginBar className="flex-row" />
 
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="ml-auto">
-                            <Nav.Link href="/">首页1</Nav.Link>
-                            <Nav.Link href="/about">关于1</Nav.Link>
-                        </Nav>
+                        <MainLink />
                     </Navbar.Collapse>
 
                 </Navbar>
 
             )}
 
-
-
-
         </div>
     )
 }
 
 export default NavbarComp;
+
